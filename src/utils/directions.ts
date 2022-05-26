@@ -63,11 +63,11 @@ export const directions: DirectionProps[] = [
 		radial: 'bg-radial-at-br',
 		conic: 'bg-conic-to-br',
 	},
-	{
-		key: 'center',
-		chevron: '',
-		gradient: '',
-		radial: 'bg-radial',
-		conic: 'bg-conic',
-	},
+	// {
+	// 	key: 'center',
+	// 	chevron: '',
+	// 	gradient: '',
+	// 	radial: 'bg-radial',
+	// 	conic: 'bg-conic',
+	// },
 ];
