@@ -1,11 +1,11 @@
-type Gradient = {
+interface GradientProps {
 	name: string;
 	direction: string;
 	colors: string;
 	version?: string;
 };
 
-export const gradients: Gradient[] = [
+export const gradients: GradientProps[] = [
 	{
 		name: 'Hyper',
 		direction: 'bg-gradient-to-r',
