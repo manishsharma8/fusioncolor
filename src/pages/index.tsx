@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import Card from '../components/Card';
+import CardList from '../components/CardList';
 import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
 
@@ -13,7 +13,7 @@ const Home: NextPage = () => {
 				description="A curated collection of beautiful Tailwind CSS gradients using the full range of Tailwind CSS colors. Easily copy and paste the class names, CSS or even save the gradients as an image."
 			/>
 
-			<Card />
+			<CardList />
 		</div>
 	);
 };
