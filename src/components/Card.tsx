@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
 import { directions } from '../utils/directions';
 
@@ -12,6 +12,7 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 	const [gradient, setGradient] = useState<string>(
 		'bg-gradient-to-t ' + colors
 	);
+	const gradientDiv = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		setGradient(direction + ' ' + colors);
@@ -19,29 +20,59 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 
 	return (
 		<div>
-			<div className={`${direction} ${colors} h-64 w-full rounded-3xl`}></div>
+			<div
+				ref={gradientDiv}
+				className={`${gradient} h-64 w-full rounded-3xl`}
+			></div>
 			<div className="-mt-12 mx-3 p-6 h-20 bg-gray-900 rounded-3xl shadow-lg">
 				<div className="flex justify-between">
 					<div className="text-xl font-bold">{name.toUpperCase()}</div>
-					<button
-						className="w-9 h-9 bg-gray-800 p-1 rounded-lg hover:bg-rose-600 transition-colors duration-300 ease-in"
-						onClick={() => navigator.clipboard.writeText(gradient)}
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="mx-auto h-5 w-5 text-gray-100"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke="currentColor"
-							strokeWidth={2}
+					<div className="flex gap-1.5">
+						<button
+							className="w-9 h-9 bg-gray-800 p-1 rounded-xl hover:bg-rose-600 transition-colors duration-300 ease-in"
+							onClick={() => navigator.clipboard.writeText(gradient)}
 						>
-							<path
-								strokeLinecap="round"
-								strokeLinejoin="round"
-								d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-							/>
-						</svg>
-					</button>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="mx-auto h-5 w-5 text-gray-100"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								strokeWidth={2}
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+								/>
+							</svg>
+						</button>
+						<button
+							className="w-9 h-9 bg-gray-800 p-1 rounded-xl hover:bg-rose-600 transition-colors duration-300 ease-in"
+							onClick={() =>
+								navigator.clipboard.writeText(
+									window
+										.getComputedStyle(gradientDiv.current as Element)
+										.getPropertyValue('background-image')
+								)
+							}
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								className="mx-auto h-5 w-5 text-gray-100"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke="currentColor"
+								strokeWidth={2}
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+								/>
+							</svg>
+						</button>
+					</div>
 				</div>
 				<div className="mt-5 grid grid-cols-8 gap-0.5">
 					{directions.map((dir) => (
