@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
+import toast, { Toaster } from 'react-hot-toast';
 import { directions } from '../utils/directions';
 
 interface CardProps {
@@ -30,7 +31,10 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 					<div className="flex gap-1.5">
 						<button
 							className="w-9 h-9 bg-gray-800 p-1 rounded-xl hover:bg-rose-600 transition-colors duration-300 ease-in"
-							onClick={() => navigator.clipboard.writeText(gradient)}
+							onClick={() => {
+								navigator.clipboard.writeText(gradient);
+								toast('Copied to Clipboard');
+							}}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -49,13 +53,14 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 						</button>
 						<button
 							className="w-9 h-9 bg-gray-800 p-1 rounded-xl hover:bg-rose-600 transition-colors duration-300 ease-in"
-							onClick={() =>
+							onClick={() => {
 								navigator.clipboard.writeText(
 									window
 										.getComputedStyle(gradientDiv.current as Element)
 										.getPropertyValue('background-image')
-								)
-							}
+								);
+								toast('Copied to Clipboard');
+							}}
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -97,6 +102,7 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 					))}
 				</div>
 			</div>
+			<Toaster />
 		</div>
 	);
 };
