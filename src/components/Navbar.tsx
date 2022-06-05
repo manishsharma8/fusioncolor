@@ -7,11 +7,11 @@ const Navbar: NextPage = () => {
 			<div className="flex justify-between gap-5">
 				<nav className="flex gap-9">
 					<Link href={'/'}>Gradients</Link>
-					<Link href={'/'}>Generator</Link>
+					<Link href={'/generator'}>Generator</Link>
 					<Link href={'/'}>Favourite</Link>
 				</nav>
 				<div>
-					<a>Github</a>
+					<a href="http://github.com/manishsharma8">Github</a>
 				</div>
 			</div>
 		</header>

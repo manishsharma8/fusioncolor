@@ -1,10 +1,37 @@
-interface DirectionProps {
+export interface DirectionProps {
 	key: string;
 	chevron: string;
 	gradient: string;
 	radial: string;
 	conic: string;
 }
+
+export const allDirections: string[] = [
+	'bg-gradient-to-t',
+	'bg-gradient-to-b',
+	'bg-gradient-to-l',
+	'bg-gradient-to-r',
+	'bg-gradient-to-tl',
+	'bg-gradient-to-tr',
+	'bg-gradient-to-bl',
+	'bg-gradient-to-br',
+	'bg-radial-at-t',
+	'bg-radial-at-b',
+	'bg-radial-at-l',
+	'bg-radial-at-r',
+	'bg-radial-at-tl',
+	'bg-radial-at-tr',
+	'bg-radial-at-bl',
+	'bg-radial-at-br',
+	'bg-conic-to-t',
+	'bg-conic-to-b',
+	'bg-conic-to-l',
+	'bg-conic-to-r',
+	'bg-conic-to-tl',
+	'bg-conic-to-tr',
+	'bg-conic-to-bl',
+	'bg-conic-to-br',
+];
 
 export const directions: DirectionProps[] = [
 	{
