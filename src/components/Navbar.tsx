@@ -8,7 +8,7 @@ const Navbar: NextPage = () => {
 				<nav className="flex gap-9">
 					<Link href={'/'}>Gradients</Link>
 					<Link href={'/generator'}>Generator</Link>
-					<Link href={'/'}>Favourite</Link>
+					{/* <Link href={'/'}>Favourite</Link> */}
 				</nav>
 				<div>
 					<a href="http://github.com/manishsharma8">Github</a>

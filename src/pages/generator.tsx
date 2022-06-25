@@ -53,14 +53,14 @@ const Generator: NextPage = () => {
 				description="Create your own Tailwind CSS gradient with the full Tailwind CSS color library and the extended radial and conic gradient options provided through Hypercolor"
 			/>
 			<div className="mx-10 my-20">
-				<div className="grid grid-cols-3">
+				<div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-0 border-y-2 border-gray-800 py-4">
 					<ActionButton
 						size="large"
 						gradient={gradient}
 						gradientDiv={gradientDiv}
 						getRandom={getRandom}
 					/>
-					<div className="col-start-2 col-end-4">
+					<div className="lg:col-start-2 lg:col-end-4">
 						<GradientDropdownRow
 							direction={direction}
 							from={fromValue}
@@ -73,7 +73,7 @@ const Generator: NextPage = () => {
 						/>
 					</div>
 				</div>
-				<div className="mt-10 grid grid-cols-2 gap-10">
+				<div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10">
 					<div
 						ref={gradientDiv}
 						className={`rounded-2xl ${gradient} h-96`}
