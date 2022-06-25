@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import type { NextPage } from 'next';
 import Hero from '../components/Hero';
 import Navbar from '../components/Navbar';
 import GradientDropdownRow from '../components/GradientDropdownRow';
 import { allDirections } from '../utils/directions';
 import { fromColors, viaColors, toColors } from '../utils/colors';
+import ActionButton from '../components/actionButtons';
 
 const get_random = (arr: string[]) => {
 	return arr[Math.floor(Math.random() * arr.length)];
@@ -16,6 +17,7 @@ const Generator: NextPage = () => {
 	const [viaValue, setViaValue] = useState<string>(get_random(viaColors));
 	const [toValue, setToValue] = useState<string>(get_random(toColors));
 	const [gradient, setGradient] = useState<string>('');
+	const gradientDiv = useRef<HTMLDivElement>(null);
 
 	const handleDirChange = (dir: string) => {
 		setDirection(dir);
@@ -30,10 +32,17 @@ const Generator: NextPage = () => {
 		setToValue(to);
 	};
 
+	const getRandom = () => {
+		setDirection(get_random(allDirections));
+		setFromValue(get_random(fromColors));
+		setViaValue(get_random(viaColors));
+		setToValue(get_random(toColors));
+	};
+
 	useEffect(() => {
-		const randomGradient = fromValue + ' ' + viaValue + ' ' + toValue;
-		setGradient(randomGradient);
-	}, [fromValue, viaValue, toValue]);
+		const color = fromValue + ' ' + viaValue + ' ' + toValue;
+		setGradient(direction + ' ' + color);
+	}, [fromValue, viaValue, toValue, direction]);
 
 	return (
 		<div>
@@ -45,6 +54,12 @@ const Generator: NextPage = () => {
 			/>
 			<div className="mx-10 my-20">
 				<div className="grid grid-cols-3">
+					<ActionButton
+						size="large"
+						gradient={gradient}
+						gradientDiv={gradientDiv}
+						getRandom={getRandom}
+					/>
 					<div className="col-start-2 col-end-4">
 						<GradientDropdownRow
 							direction={direction}
@@ -59,7 +74,10 @@ const Generator: NextPage = () => {
 					</div>
 				</div>
 				<div className="mt-10 grid grid-cols-2 gap-10">
-					<div className={`rounded-2xl ${direction} ${gradient} h-96`}></div>
+					<div
+						ref={gradientDiv}
+						className={`rounded-2xl ${gradient} h-96`}
+					></div>
 					<div className="bg-black rounded-2xl relative p-8 flex items-center h-96">
 						<p
 							className={`text-3xl text-center font-bold text-transparent bg-clip-text ${direction} ${gradient}`}

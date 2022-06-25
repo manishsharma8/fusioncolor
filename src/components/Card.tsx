@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import type { NextPage } from 'next';
-import toast, { Toaster } from 'react-hot-toast';
 import { directions } from '../utils/directions';
 import Chevron from '../icons/chevron';
-import CopyTailwind from '../icons/copyTailwind';
-import CopyCSS from './../icons/copyCss';
+import ActionButton from './actionButtons';
 
 interface CardProps {
 	name: string;
@@ -31,30 +29,7 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 			<div className="-mt-12 mx-3 p-6 h-20 bg-gray-900 rounded-3xl shadow-lg">
 				<div className="flex justify-between">
 					<div className="text-xl font-bold">{name.toUpperCase()}</div>
-					<div className="flex gap-1.5">
-						<button
-							className="w-9 h-9 bg-gray-800 p-1 rounded-xl hover:bg-rose-600 transition-colors duration-300 ease-in"
-							onClick={() => {
-								navigator.clipboard.writeText(gradient);
-								toast('Copied to Clipboard');
-							}}
-						>
-							<CopyTailwind />
-						</button>
-						<button
-							className="w-9 h-9 bg-gray-800 p-1 rounded-xl hover:bg-rose-600 transition-colors duration-300 ease-in"
-							onClick={() => {
-								navigator.clipboard.writeText(
-									window
-										.getComputedStyle(gradientDiv.current as Element)
-										.getPropertyValue('background-image')
-								);
-								toast('Copied to Clipboard');
-							}}
-						>
-							<CopyCSS />
-						</button>
-					</div>
+					<ActionButton gradient={gradient} gradientDiv={gradientDiv} />
 				</div>
 				<div className="mt-5 grid grid-cols-8 gap-1">
 					{directions.map((dir) => (
@@ -68,7 +43,6 @@ const Card: NextPage<CardProps> = ({ name, colors }) => {
 					))}
 				</div>
 			</div>
-			<Toaster />
 		</div>
 	);
 };

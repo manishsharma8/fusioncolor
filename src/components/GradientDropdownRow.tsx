@@ -29,6 +29,13 @@ const GradientDropdownRow: React.FC<GradientDropdownRowProps> = ({
 	const [viaValue, setViaValue] = useState<string>(via);
 	const [toValue, setToValue] = useState<string>(to);
 
+	useEffect(() => {
+		setDirValue(direction);
+		setFromValue(from);
+		setViaValue(via);
+		setToValue(to);
+	}, [direction, from, via, to]);
+
 	const handleDirChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setDirValue(event.target.value);
 		dirChange(event.target.value);
